@@ -76,9 +76,28 @@ LinkedList.prototype.removeTail = function() {
   return val;
 };
 
-var ll = new LinkedList();
+/*var ll = new LinkedList();
 
 ll.addToHead('one');
 ll.addToHead('two');
 ll.addToHead('three');
-console.log(ll.removeTail());
+console.log(ll.removeTail());*/
+
+LinkedList.prototype.search = function(serachValue) {
+    var currentNode = this.head;
+    while(currentNode) {
+        if (currentNode.value === serachValue) return currentNode.value;
+        currentNode = currentNode.next;
+    }
+    return null;
+}
+
+var myLL = new LinkedList();
+myLL.addToHead(123);
+myLL.addToHead(70);
+myLL.addToHead('hello');
+myLL.addToTail(19);
+myLL.addToTail('world');
+myLL.addToTail(20);
+
+console.log(myLL.search(10));
