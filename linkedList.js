@@ -84,15 +84,15 @@ ll.addToHead('three');
 console.log(ll.removeTail());*/
 
 LinkedList.prototype.search = function(serachValue) {
-    var currentNode = this.head;
-    while(currentNode) {
-        if (currentNode.value === serachValue) return currentNode.value;
-        currentNode = currentNode.next;
-    }
-    return null;
-}
+  var currentNode = this.head;
+  while (currentNode) {
+    if (currentNode.value === serachValue) return currentNode.value;
+    currentNode = currentNode.next;
+  }
+  return null;
+};
 
-var myLL = new LinkedList();
+/*var myLL = new LinkedList();
 myLL.addToHead(123);
 myLL.addToHead(70);
 myLL.addToHead('hello');
@@ -100,4 +100,26 @@ myLL.addToTail(19);
 myLL.addToTail('world');
 myLL.addToTail(20);
 
-console.log(myLL.search(10));
+console.log(myLL.search(10));*/
+
+LinkedList.prototype.indexOf = function(value) {
+  var indexes = [];
+  var currentIndex = 0;
+  var currentNode = this.head;
+  while (currentNode) {
+    if (currentNode.value === value) indexes.push(currentIndex);
+    currentNode = currentNode.next;
+    currentIndex++;
+  }
+  return indexes;
+};
+
+var list = new LinkedList();
+list.addToHead(1);
+list.addToHead(3);
+list.addToHead(4);
+list.addToTail(3);
+list.addToTail(4);
+list.addToHead(4);
+
+console.log(list.indexOf(3));
