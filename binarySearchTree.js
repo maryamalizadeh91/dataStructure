@@ -43,6 +43,41 @@ BST.prototype.breadthFirstTraversal = function(iteratorFunc) {
   }
 };
 
+
+/*BST.prototype.getMinVal = function() {
+  var minVal = this.value;
+  var queue = [this];
+  while (queue.length) {
+    var treeNode = queue.shift();
+    if (treeNode.value < minVal) minVal = treeNode.value;
+    if (treeNode.left) queue.push(treeNode.left);
+    if (treeNode.right) queue.push(treeNode.right); 
+  }
+  return minVal;
+}
+
+BST.prototype.getMaxVal = function() {
+  var maxVal = this.value;
+  var queue = [this];
+  while (queue.length) {
+    var treeNode = queue.shift();
+    if (treeNode.value > maxVal) maxVal = treeNode.value;
+    if (treeNode.left) queue.push(treeNode.left);
+    if (treeNode.right) queue.push(treeNode.right); 
+  }
+  return maxVal;
+}*/
+
+BST.prototype.getMinVal = function() {
+  if (this.left) return this.left.getMinVal();
+  else return this.value;
+}
+
+BST.prototype.getMaxVal = function() {
+  if (this.right) return this.right.getMaxVal();
+  else return this.value;
+}
+
 /*function log(value) {
   console.log(value);
 }*/
@@ -68,4 +103,8 @@ bst.insert(10);
 //console.log(bst.left.right.left);
 //console.log(bst.contains(90));
 //bst.depthFirstTraversal(log, "post-order");
-bst.breadthFirstTraversal(log);
+//bst.breadthFirstTraversal(log);
+
+console.log('Min: ', bst.getMinVal());
+console.log('Max: ', bst.getMaxVal());
+
