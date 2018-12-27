@@ -20,7 +20,7 @@ HashTable.prototype.hash = function(key) {
 
 HashTable.prototype.insert = function(key, value) {
   var index = this.hash(key);
-  console.log("Index: ", index);
+  //console.log("Index: ", index);
   if (!this.buckets[index]) this.buckets[index] = new HashNode(key, value);
   else if (this.buckets[index].key === key) {
     this.buckets[index].value = value;
@@ -37,6 +37,19 @@ HashTable.prototype.insert = function(key, value) {
   }
 };
 
+HashTable.prototype.get = function(key) {
+  var index = this.hash(key);
+  if (!this.buckets[index]) return null;
+  else {
+    var currentNode = this.buckets[index];
+    while (currentNode) {
+      if (currentNode.key === key) return currentNode.value;
+      currentNode = currentNode.next;
+    }
+    return null;
+  }
+}
+
 var myHT = new HashTable(30);
 
 //console.log(myHT.hash("Becca"));
@@ -48,4 +61,6 @@ myHT.insert("Dean", "deanmachine@gmail.com");
 myHT.insert("Megan", "megansmith@gmail.com");
 myHT.insert("Dane", "dane1010@outlook.com");
 
-console.log(myHT.buckets);
+console.log(myHT.get("Megan"));
+
+//console.log(myHT.buckets);
