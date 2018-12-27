@@ -17,13 +17,23 @@ BST.prototype.insert = function(value) {
 BST.prototype.contains = function(value) {
   if (value === this.value) return true;
   else if (value < this.value) {
-      if (!this.left) return false;
-      else return this.left.contains(value);
+    if (!this.left) return false;
+    else return this.left.contains(value);
   } else if (value > this.value) {
-      if (!this.right) return false;
-      else return this.right.contains(value);
+    if (!this.right) return false;
+    else return this.right.contains(value);
   }
 };
+
+BST.prototype.depthFirstTraversal = function(iteratorFunc) {
+  if (this.left) this.left.depthFirstTraversal(iteratorFunc);
+  iteratorFunc(this.value);
+  if (this.right) this.right.depthFirstTraversal(iteratorFunc);
+};
+
+function log(value) {
+  console.log(value);
+}
 
 var bst = new BST(50);
 
@@ -40,5 +50,6 @@ bst.insert(105);
 bst.insert(10);
 
 //console.log(bst.left.right.left);
+//console.log(bst.contains(90));
 
-console.log(bst.contains(90));
+bst.depthFirstTraversal(log);
